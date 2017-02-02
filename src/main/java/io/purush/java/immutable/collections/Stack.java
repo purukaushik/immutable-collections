@@ -6,7 +6,20 @@ import java.util.EmptyStackException;
  * Op complexity: <br>
  * <ol><li> Insertion - O(1) </li>
  * <li>Deletion - O(1) </li></ol>
- * This implementation is immutable and thereby threadsafe.
+ * This implementation is persistent and thereby threadsafe.
+ * Creating a new stack : 
+ * 1. Dumb and empty stack 
+ *     <code>
+ *         Stack<String> stack = new Stack<>();
+ *     </code>
+ * 2. Add a top element
+ *     <code>
+ *         Stack<String> stack = new Stack<>("Hello");
+ *     </code>
+ * 3. Add a bottom Stack
+ *     <code>
+ *         Stack<String> stack = new Stack<>("Hello", new Stack<String>("World"));
+ *     </code>
  * @author Purush Swaminathan
  * @since 1.0
  */
@@ -82,21 +95,31 @@ public class Stack<E> implements Seque<E> {
   @Override
   public boolean equals(Object object){
     if(object==null) return false;
-    
+
     if(!(object instanceof Stack)) return false;
 
     Stack<E> that =(Stack<E>) object;
     if(this.size != that.size) return false;
-    if(this.size==1 && this.top == that.top){
-      return true;
-    }else{
-      return this.top.equals(that.top) &&
-	this.bottom.equals(that.bottom);
+
+    if(this.top == null){
+      return that.top == null;
+    } else{
+      if(that.top != null){ //-> else false
+	if(this.top == that.top){ //-> else false
+	  if(this.bottom == null){
+	    return that.bottom == null;
+	  } else{
+	    if(that.bottom != null) return this.bottom.equals(that.bottom); //-> else false
+	  }
+	}
+      }
     }
+    return false;
   }
 
   @Override
   public int hashCode(){
+    if(top==null) return 0;
     int topHash = top.hashCode();
     if(size==1) return topHash;
     else{
