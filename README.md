@@ -16,7 +16,7 @@ git clone https://github.com/purukaushik/immutable-collections.git
 ```
 2.
 ```
-    mvn clean install
+mvn clean install
 ```
 
 ## Javadoc
