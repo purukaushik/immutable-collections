@@ -11,9 +11,13 @@ Currently this project is wip. Feel free to contribute your implementations and 
 
 ## Building
     1.
-	    ```git clone https://github.com/purukaushik/immutable-collections.git```
+    ```
+    git clone https://github.com/purukaushik/immutable-collections.git
+    ```
     2. 
-	    ```mvn clean install```
+    ```
+    mvn clean install
+    ```
 
 ## Javadoc
 Available here ->[https://purukaushik.github.io/immutable-collections](https://purukaushik.github.io/immutable-collections/index.html)
