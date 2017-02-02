@@ -5,7 +5,7 @@ package io.purush.java.immutable.collections;
  * @author Purush Swaminathan
  * @since 1.0
  */
-public interface Seque<E> {
+public interface Seque<E> extends Collection<E>{
 
   /**
    * Creates a fresh instance of the Seque with the element at the open end of the <code>Seque</code>.<br>
@@ -28,5 +28,4 @@ public interface Seque<E> {
    * @return the end element of this <code>Seque</code>
    */
   E peek();
-
 }
