@@ -74,4 +74,34 @@ public class Stack<E> implements Seque<E> {
   
   // TODO:
   // Override Object stuff -> hashCode, equals, toString
+  @Override
+  public String toString(){
+    return size==0 ? "NULL" : top.toString() + "->" + bottom.toString();
+  }
+
+  @Override
+  public boolean equals(Object object){
+    if(object==null) return false;
+    
+    if(!(object instanceof Stack)) return false;
+
+    Stack<E> that =(Stack<E>) object;
+    if(this.size != that.size) return false;
+    if(this.size==1 && this.top == that.top){
+      return true;
+    }else{
+      return this.top.equals(that.top) &&
+	this.bottom.equals(that.bottom);
+    }
+  }
+
+  @Override
+  public int hashCode(){
+    int topHash = top.hashCode();
+    if(size==1) return topHash;
+    else{
+      int bottomHash = bottom.hashCode();
+      return 31*topHash + bottomHash;
+    }
+  }
 }
