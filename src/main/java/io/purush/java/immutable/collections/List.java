@@ -1,6 +1,13 @@
 package io.purush.java.immutable.collections;
 
-public interaface List<E> {
+/**
+ * A simplistic abstraction of immutable <code>List</code>s. <br>
+ * Ability to add, remove, update elements to/from the <code>List</code>.<br>
+ * Additional ability to merge, split, piece-out lists from a <code>List</code>.
+ * @author Purush Swaminathan
+ * @since 1.0
+ */
+public interface List<E> {
 
   List<E> add(E e);
 
