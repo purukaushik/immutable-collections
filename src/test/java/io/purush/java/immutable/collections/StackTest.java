@@ -7,37 +7,60 @@ import static org.junit.Assert.assertFalse;
 import org.junit.Test;
 import java.util.HashSet;
 import java.util.Set;
-
+import java.util.EmptyStackException;
 
 public class StackTest {
   @Test
   public void checkNewEmpty(){
-    fail();
+    // is this all we could do?
+    assertEquals("An empty stack has to have 0 size.", Empty().size(), 0);
   }
 
   @Test
   public void checkPopEmpty(){
-    fail();    
+    
+    try{
+      Empty().pop();
+      fail("Empty pop -> blew out of proportions.");
+    } catch(EmptyStackException ese){
+    }
   }
 
   @Test
   public void checkPushEmpty(){
-    fail();
+    assertEquals(Empty().push(5).size(), 1);
   }
   
   @Test
   public void checkPeekEmpty(){
-    fail();
+
+    try{
+      Empty().peek();
+      fail("Empty peek -> blew out of proportions.");
+    } catch(EmptyStackException ese1){
+      //do nothing
+    }
+    
   }
 
   @Test
   public void checkPopNonEmpty(){
-    fail();
+    Seque<Integer> stack = Empty().push(1).push(2);
+    assertEquals(stack.pop().size(), 1);
+    assertEquals(stack.pop().pop().size(),0);
+  }
+
+  @Test
+  public void checkPeekNonEmpty(){
+    Seque<Integer> stack = Empty().push(1);
+    assertEquals((int)stack.peek(), 1);
   }
  
   @Test
   public void checkPushNonEmpty(){
-    fail();
+    Seque<Integer> stack = Empty().push(1);
+    assertEquals((int)stack.push(2).peek(),2);
+    assertEquals(stack.push(2).size(),2);
   }
   @Test
   public void checkHashability(){
@@ -73,4 +96,5 @@ public class StackTest {
 
   }
   // wont test toString
+  static Stack<Integer> Empty(){ return new Stack<Integer>();}
 }
